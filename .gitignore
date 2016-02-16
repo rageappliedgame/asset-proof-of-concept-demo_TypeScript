@@ -1,0 +1,17 @@
+bin/*
+obj/*
+*.map
+*.csproj.*
+web.*
+*.js
+*.dll
+*/bin/*
+*/obj/*
+*.d.ts
+*.map
+*.suo
+*.sln
+*.rar
+.vs/*
+.vs/asset-proof-of-concept-demo_TypeScript/asset-proof-of-concept-demo_TypeScript.scgdat
+*.scgdat
