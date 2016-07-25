@@ -10,7 +10,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -40,6 +40,7 @@
     <TypeScriptCompile Include="IBridge.ts" />
     <TypeScriptCompile Include="IDataStorage.ts" />
     <TypeScriptCompile Include="IDefaultSettings.ts" />
+    <TypeScriptCompile Include="ILog.ts" />
     <TypeScriptCompile Include="ISettings.ts" />
     <TypeScriptCompile Include="Messages.ts" />
     <TypeScriptCompile Include="Version.ts" />

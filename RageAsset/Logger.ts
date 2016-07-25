@@ -33,7 +33,7 @@ module AssetPackage {
         constructor() {
             super();
         }
-        
+
         /// <summary>
         /// Logs. We need some funky typecasting to get things compiling as our Bridge does not implement
         /// ILogger.
@@ -41,15 +41,16 @@ module AssetPackage {
         ///
         /// <param name="msg"> The message. </param>
         log(msg: string): void {
-            if (this.Bridge && (<ILogger>this.Bridge).doLog) {
-                // Force a cast. There is no 'is' operator and 'instanceof' does not compile.
-                (<ILogger>this.Bridge).doLog(msg);
-            } else if (this.assetManager.Bridge && (<ILogger>this.assetManager.Bridge).doLog) {
-                // Force a cast. There is no 'is' operator and 'instanceof' does not compile.
-                (<ILogger>this.assetManager.Bridge).doLog(msg);
-            } else if (console && console.log) {
-                console.log(msg);
-            }
+            this.Log(Severity.Information, msg);
+            //if (this.Bridge && (<ILog>this.Bridge).Log) {
+            //    // Force a cast. There is no 'is' operator and 'instanceof' does not compile.
+            //    (<ILog>this.Bridge).Log(Severity.Information, msg);
+            //} else if (this.assetManager.Bridge && (<ILogger>this.assetManager.Bridge).doLog) {
+            //    // Force a cast. There is no 'is' operator and 'instanceof' does not compile.
+            //    (<ILog>this.assetManager.Bridge).Log(Severity.Information, msg);
+            //} else if (console && console.log) {
+            //    console.log(msg);
+            //}
         }
     }
 }

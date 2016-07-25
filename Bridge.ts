@@ -1,60 +1,23 @@
 ﻿/// <reference path="RageAssetManager/IBridge.ts"/>
 /// <reference path="RageAssetManager/IDataStorage.ts"/>
 /// <reference path="RageAssetManager/IDefaultSettings.ts"/>
+/// <reference path="RageAssetManager/ILog.ts"/>
 /// 
-/// <reference path="RageAsset/ILogger.ts"/>
 /// <reference path="RageAsset/IDataArchive.ts"/>
 
 module MyNameSpace {
 
     import IBridge = AssetPackage.IBridge;
-    import ILogger = AssetPackage.ILogger;
+    import ILog = AssetPackage.ILog;
+    import Severity = AssetPackage.Severity;
     import IDataStorage = AssetPackage.IDataStorage;
     import IDefaultSettings = AssetPackage.IDefaultSettings;
     import IDataArchive = AssetPackage.IDataArchive;
-    
+
     /// <summary>
     /// Export the Asset.
     /// </summary>
-    export class Bridge implements IBridge, ILogger, IDataStorage, IDefaultSettings, IDataArchive {
-
-        /// <summary>
-        /// Initializes a new instance of the Bridge class.
-        /// </summary>
-        ///
-        /// <param name="prefix"> The prefix. </param>
-        constructor(prefix: string) {
-            this.prefix = prefix;
-        }
-
-        /// <summary>
-        /// The prefix.
-        /// </summary>
-        private _prefix: string;
-
-        /// <summary>
-        /// Gets the prefix.
-        /// </summary>
-        ///
-        /// <returns>
-        /// A string.
-        /// </returns>
-        get prefix(): string {
-            return this._prefix;
-        }
-
-        /// <summary>
-        /// Prefixes.
-        /// </summary>
-        ///
-        /// <param name="value"> The value. </param>
-        ///
-        /// <returns>
-        /// A set.
-        /// </returns>
-        set prefix(value: string) {
-            this._prefix = value;
-        }
+    export class Bridge implements IBridge, ILog, IDataStorage, IDefaultSettings, IDataArchive {
 
         /// <summary>
         /// Executes the log operation.
@@ -63,8 +26,8 @@ module MyNameSpace {
         /// </summary>
         ///
         /// <param name="msg"> The message. </param>
-        doLog(msg: string): void {
-            console.log(this.prefix + msg);
+        Log(severity: Severity, msg: string): void {
+            console.log(severity + ": " + msg);
         }
 
         Delete(fileId: string): boolean {

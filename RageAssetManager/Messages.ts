@@ -53,6 +53,24 @@ module MessagesPackage {
             return false;
         }
 
+        static broadcaster(message: string, subscribers: any[], parameters: Object) {
+            //var subscribers = this.messages[message];
+            var len: number = subscribers ? subscribers.length : 0;
+
+            for (var subscriber in subscribers) {
+                var tmp: any = subscribers[subscriber];
+                if (tmp.func) {
+                    tmp.func(message, parameters);
+                }
+
+                //! This code fails to compile in the latest TypeScript version ('func' not found on type string).
+                // 
+                //if (subscriber.func) {
+                //    subscriber.func(message, parameters);
+                //}
+            }
+        }
+
         /// <summary>
         /// Broadcast a message.
         /// </summary>
@@ -68,16 +86,25 @@ module MessagesPackage {
                 return false;
             }
 
-            setTimeout(function () {
-                var subscribers = Messages.messages[message];
-                var len: number = subscribers ? subscribers.length : 0;
+            setTimeout(this.broadcaster, 0, message, this.messages[message], parameters);
+            //{
+            //    broadcaster(
+            //    var subscribers = this.messages[message];
+            //    var len: number = subscribers ? subscribers.length : 0;
 
-                for (var subscriber in subscribers) {
-                    if (subscriber.func) {
-                        subscriber.func(message, parameters);
-                    }
-                }
-            }, 0);
+            //    for (var subscriber in subscribers) {
+            //        var tmp: any = subscriber;
+            //        if (tmp.func) {
+            //            tmp.func(message, parameters);
+            //        }
+
+            //        //! This code fails to compile in the latest TypeScript version ('func' not found on type string).
+            //        // 
+            //        //if (subscriber.func) {
+            //        //    subscriber.func(message, parameters);
+            //        //}
+            //    }
+            //}, 0, message, this.messages[message]);
 
             return true;
         }

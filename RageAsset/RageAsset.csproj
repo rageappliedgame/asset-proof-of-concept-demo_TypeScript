@@ -10,7 +10,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -33,7 +33,6 @@
     <TypeScriptCompile Include="Asset.ts" />
     <TypeScriptCompile Include="AssetSettings.ts" />
     <TypeScriptCompile Include="IDataArchive.ts" />
-    <TypeScriptCompile Include="ILogger.ts" />
     <TypeScriptCompile Include="Logger.ts" />
   </ItemGroup>
   <PropertyGroup>

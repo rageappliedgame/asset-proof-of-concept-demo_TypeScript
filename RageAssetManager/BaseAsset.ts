@@ -3,6 +3,7 @@
 /// <reference path="IBridge.ts"/>
 /// <reference path="IDataStorage.ts"/>
 /// <reference path="IDefaultSettings.ts"/>
+/// <reference path="ILog.ts"/>
 /// <reference path="Version.ts"/>
 ///
 module AssetPackage {
@@ -312,6 +313,43 @@ module AssetPackage {
             // 
             return JSON.stringify(this.Settings);
         }
+
+        /// <summary>
+        /// Logs.
+        /// </summary>
+        ///
+        /// <param name="severity"> The severity. </param>
+        /// <param name="format">   Describes the format to use. </param>
+        /// <param name="args">     A variable-length parameters list containing
+        ///                         arguments. </param>
+        public Log(severity: Severity, format: string, ...args): void {
+            var ds: ILog = this.getInterfaceMethod("Log");
+
+            if (ds != null) {
+                var result: string = format;
+
+                for (var i = 0; i < args.length; i++) {
+                    result = result.replace("/\\{" + (i - 1) + "\\}/", args[i]);
+                }
+
+                //this.Log(severity, result);
+                ds.Log(severity, result);
+            }
+        }
+
+        ///// <summary>
+        ///// Logs.
+        ///// </summary>
+        /////
+        ///// <param name="severity"> The severity. </param>
+        ///// <param name="msg">      The message. </param>
+        //public Log(severity: Severity, msg: string): void {
+        //    var ds: ILog = this.getInterfaceMethod("Log");
+
+        //    if (ds != null) {
+        //        ds.Log(severity, msg);
+        //    }
+        //}
 
         /// <summary>
         /// Gets the methods.

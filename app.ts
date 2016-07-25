@@ -63,8 +63,8 @@ module MyNameSpace {
         Tests.Test_07_Settings();
     }
 
-    var bridge1: Bridge = new Bridge("global bridge: ");
-    var bridge2: Bridge = new Bridge("private bridge: ");
+    var bridge1: Bridge = new Bridge();
+    var bridge2: Bridge = new Bridge();
 
     export class Tests {
         private static asset1: Asset;
@@ -86,7 +86,7 @@ module MyNameSpace {
             this.asset4 = new Logger();
 
             //this.asset5 = new DialogueAsset();
-            
+
             // Give asset2 it's own bridge.
             this.asset3.Bridge = bridge2;
 
@@ -178,10 +178,10 @@ module MyNameSpace {
         /// </summary>
         public static Test_04_DataStorageAndArchive(): void {
             // 1) Lets use the Asetmanage Bridge (using a localStorage based implementation).
-            
+
             this.asset3.log("----[assetmanager.bridge]-----");
             this.asset2.doStore();   // Create Hello1.txt and Hello2.txt
-            
+
             var files: string[];
 
             files = this.asset2.doList();
@@ -190,14 +190,14 @@ module MyNameSpace {
             }
 
             this.asset2.doRemove();  // Remove Hello1.txt
-            
+
             files = this.asset2.doList();
             for (var j = 0; j < files.length; j++) {
                 this.asset3.log(files[j] + "=" + this.asset2.doLoad(files[j]));
             }
 
             this.asset2.doArchive(); // Move Hello2.txt
-            
+
             // 2) Reset/Remove Both Bridges (back to an in-memory Dictionary of Asset).
             // 
             this.asset3.log("----[default]-----");
@@ -255,7 +255,9 @@ module MyNameSpace {
 
             Messages.broadcast('Broadcast.Msg', 'hello from demo.html!');
 
-            Messages.unsubscribe(subscriptionId);
+            // Can't directly unsubscribe like in C# as setTimeOut has still to happen.
+            // 
+            // Messages.unsubscribe(subscriptionId);
         }
 
         /// <summary>
@@ -280,7 +282,7 @@ module MyNameSpace {
             // 
 
             this.asset3.log("Trying to re-register " + this.asset4.Id + " -> " + AssetManager.Instance.registerAssetInstance(this.asset4, this.asset4.Class));
-            
+
             //console.log(asset3.Class);
             //console.log(asset3.Id);
         }
