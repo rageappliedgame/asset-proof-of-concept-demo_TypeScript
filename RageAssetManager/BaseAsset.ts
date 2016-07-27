@@ -329,7 +329,7 @@ module AssetPackage {
                 var result: string = format;
 
                 for (var i = 0; i < args.length; i++) {
-                    result = result.replace("/\\{" + (i - 1) + "\\}/", args[i]);
+                    result = result.replace("{" + i + "}", args[i]);
                 }
 
                 //this.Log(severity, result);
